@@ -3,7 +3,6 @@ require_relative '../lib/snack'
 require_relative '../lib/sandwich'
 require_relative '../legacy_app'
 
-########## Partie RSpec ##########
 RSpec.describe "Shit load of crap you were told would be 'state of the art' during the interview..." do
   describe Ingredient do
     it 'has a name' do
@@ -22,7 +21,6 @@ RSpec.describe "Shit load of crap you were told would be 'state of the art' duri
   end
 
 
-  # # Snack
   describe Snack do
     it 'is shareable returns true' do
       expect(subject).to be_shareable
@@ -33,7 +31,6 @@ RSpec.describe "Shit load of crap you were told would be 'state of the art' duri
     end
   end
 
-  # # Sandwich
   describe Sandwich do
     context 'when no sandwich has been created yet' do
       it 'can tell that no sanwich has been made so far' do
@@ -68,7 +65,6 @@ RSpec.describe "Shit load of crap you were told would be 'state of the art' duri
       end
     end
 
-    # ## Ingredients
     describe '.ingredients' do
       it 'has ingredients from Ingredients class' do
         sandwich = Sandwich.new('tata')
@@ -82,7 +78,6 @@ RSpec.describe "Shit load of crap you were told would be 'state of the art' duri
       end
     end
 
-    # ## Pain point
     describe '#pain_point' do
       it 'returns a string when there is at least one tomatoe' do
         sandwich = Sandwich.new('tomatoe')
@@ -128,14 +123,12 @@ RSpec.describe "Shit load of crap you were told would be 'state of the art' duri
     end
 
     describe '#can_be_eaten' do
-      # ## can be eaten
       it 'can be eaten' do
         expect(Sandwich.new).to respond_to(:can_be_eaten)
       end
     end
   end
 
-  # # LegacyCodeFromHellYouNeedToTest
   describe LegacyCodeFromHellYouNeedToTest do
     subject(:hell_yeah) { LegacyCodeFromHellYouNeedToTest.new }
 
@@ -143,12 +136,10 @@ RSpec.describe "Shit load of crap you were told would be 'state of the art' duri
       expect { hell_yeah }.to change(Sandwich, :count).by(2)
     end
 
-      # ## 'my sandwich'
       it 'has 3 ingredients' do
         expect(hell_yeah.my_sandwich.count).to eq(3)
       end
 
-      # ## 'your sandwich'
       it 'has more ingredients than my sandwich' do
         expect(hell_yeah.your_sandwich.ingredients.count).to be > (hell_yeah.my_sandwich.count)
       end
