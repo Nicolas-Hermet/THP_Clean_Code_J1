@@ -7,7 +7,6 @@ class Sandwich < Snack
   KARADOC_IDEAL_NUMBER_OF_INGREDIENTS = 14
 
   def initialize(*args)
-    super
     @ingredients = []
     raise 'Too many ingredients' if args.size > KARADOC_IDEAL_NUMBER_OF_INGREDIENTS
 
@@ -24,11 +23,11 @@ class Sandwich < Snack
   attr_reader :ingredients
 
   def pain_point
-    @ingredients.include('tomatoe') ? 'tomatoes try to slip away on each bite' : false
+    @ingredients.map(&:name).include?('tomatoe') ? 'tomatoes try to slip away on each bite' : false
   end
 
   def shareable?
-    @ingredients.include('tomatoe') ? 'With difficulty' : 'Yup... why not ?'
+    @ingredients.map(&:name).include?('tomatoe') ? 'With difficulty' : 'Yup... why not ?'
   end
 
   def add_ingredient(ingredient)
