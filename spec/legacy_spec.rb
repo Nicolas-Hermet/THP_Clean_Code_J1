@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../lib/ingredient'
 require_relative '../lib/snack'
 require_relative '../lib/sandwich'
