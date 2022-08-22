@@ -20,7 +20,6 @@ RSpec.describe "Shit load of crap you were told would be 'state of the art' duri
     end
   end
 
-
   describe Snack do
     it 'is shareable returns true' do
       expect(subject).to be_shareable
@@ -55,9 +54,11 @@ RSpec.describe "Shit load of crap you were told would be 'state of the art' duri
       end
 
       it 'Raises an error when loaded with more than 14 ingredients' do
-        expect { Sandwich.new('salad', 'jambon', 'fromage', 'tartiflett', 'mort au rat', 'biere', 'doigt',
-          'salad', 'jambon', 'fromage', 'tartiflett', 'mort au rat', 'biere', 'doigt',
-          'salad', 'jambon', 'fromage', 'tartiflett', 'mort au rat', 'biere', 'doigt') }.to raise_error('Too many ingredients')
+        expect do
+          Sandwich.new('salad', 'jambon', 'fromage', 'tartiflett', 'mort au rat', 'biere', 'doigt',
+                       'salad', 'jambon', 'fromage', 'tartiflett', 'mort au rat', 'biere', 'doigt',
+                       'salad', 'jambon', 'fromage', 'tartiflett', 'mort au rat', 'biere', 'doigt')
+        end.to raise_error('Too many ingredients')
       end
 
       it 'contains the given ingredients' do
@@ -68,7 +69,7 @@ RSpec.describe "Shit load of crap you were told would be 'state of the art' duri
     describe '.ingredients' do
       it 'has ingredients from Ingredients class' do
         sandwich = Sandwich.new('tata')
-        expect(sandwich.ingredients).to  include(be_an_instance_of(Ingredient))
+        expect(sandwich.ingredients).to include(be_an_instance_of(Ingredient))
       end
     end
 
@@ -112,10 +113,10 @@ RSpec.describe "Shit load of crap you were told would be 'state of the art' duri
         expect { test_sandwich.add_ingredient(yummy) }.to change(test_sandwich.ingredients, :count).by(1)
       end
 
-      let(:karadoc_sandwich) {
+      let(:karadoc_sandwich) do
         Sandwich.new('salad', 'jambon', 'fromage', 'tartiflett', 'mort au rat', 'biere', 'doigt',
                      'salad', 'jambon', 'fromage', 'tartiflett', 'mort au rat', 'biere', 'doigt')
-      }
+      end
 
       it 'does not accepts a 14th ingredient nor more' do
         expect { karadoc_sandwich.add_ingredient('des graines') }.to raise_error('Please no more ingredient !')
@@ -136,13 +137,12 @@ RSpec.describe "Shit load of crap you were told would be 'state of the art' duri
       expect { hell_yeah }.to change(Sandwich, :count).by(2)
     end
 
-      it 'has 3 ingredients' do
-        expect(hell_yeah.my_sandwich.count).to eq(3)
-      end
+    it 'has 3 ingredients' do
+      expect(hell_yeah.my_sandwich.count).to eq(3)
+    end
 
-      it 'has more ingredients than my sandwich' do
-        expect(hell_yeah.your_sandwich.ingredients.count).to be > (hell_yeah.my_sandwich.count)
-      end
+    it 'has more ingredients than my sandwich' do
+      expect(hell_yeah.your_sandwich.ingredients.count).to be > (hell_yeah.my_sandwich.count)
+    end
   end
 end
-
